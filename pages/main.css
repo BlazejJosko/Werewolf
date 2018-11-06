@@ -1,0 +1,31 @@
+#Überschrift{
+    align-content: center;
+}
+div{
+    text-align: center;
+}
+*{
+    font-family: Arial, sans-serif;
+}
+html{
+    background-image: url('images/background.png');
+}
+button{
+    background-color: rgba(200, 200, 200, 0.281);
+    border: 2px solid rgba(200, 200, 200, 0.281);
+    zoom: 4;
+}
+input{
+    width: 90%;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(200, 200, 200, 0.281);
+}
+form {
+    zoom: 4;
+}
+#Überschrift{
+    font-size: 200%;
+}
+#Knöpfe{
+    padding-top: 15%;
+}

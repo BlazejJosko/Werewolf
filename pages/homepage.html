@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <div id="MainMenu">
+        <div id="Überschrift">
+            <h1>Werewolf</h1>
+        </div>
+        <div id="Knöpfe">
+            <button onclick="joinroom()">Join Room</button>
+            <button onclick="createServer()">Create Server</button>
+        </div>
+    </div>
+    <div id="Server" style="display:none">
+        <form id="serverForm" action="createServer">
+            Password: <input type="password"> <br>
+            Extended?: <input type="checkbox"> <br>
+            <br>
+            <input type="submit">
+        </form>
+    </div>
+    <div id="Client" style="display:none">
+        <form id="loginForm">
+            Server-ID: <input type="text" name="serverID"> <br>
+            Password: <input type="password" name="password"> <br>
+
+            Nickname: <input type="text" name="nickname" value="nickname">   <br>
+            <br>
+            <input type="submit">   <br>
+        </form>
+    </div>
+</body>
+</html>
