@@ -10,19 +10,36 @@ function createServer(){
 }
 $(document).ready(() => {
 
-    var form = $('#loginForm');
-    form.submit((e) => {
+    var serverForm = $('#serverForm');
+    var loginForm = $('#loginForm');
+
+    loginForm.submit((e) => {
         e.preventDefault();
 
-        console.log(form.serialize());
+        console.log(loginForm.serialize());
 
         $.ajax({
             type: "POST",
             //url: form.attr('action') or '',
-            data: form.serialize(),
+            data: loginForm.serialize(),
             success: (data) => {
                 console.log(data);
             }
         });
+    })
+
+    serverForm.submit((e) => {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: serverForm.attr('action'),
+            data: serverForm.serialize(),
+            success: (data) => {
+                //success function
+            },
+            error: (err) => {
+                //error function
+            }
+        })
     })
 });
