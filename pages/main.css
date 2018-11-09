@@ -5,10 +5,13 @@ div{
     text-align: center;
 }
 *{
+    text-shadow: rgba(255, 255, 255, .2) 1px 0px 0px, rgba(255, 255, 255, 1) 0.540302px 0.841471px 0px, rgba(255, 255, 255, .2) -0.416147px 0.909297px 0px, rgba(255, 255, 255, .2) -0.989992px 0.14112px 0px, rgba(255, 255, 255, .2) -0.653644px -0.756802px 0px;
     font-family: Arial, sans-serif;
 }
 html{
     background-image: url('images/background.png');
+    background-repeat: no-repeat;
+    background-color: black;
 }
 button{
     background-color: rgba(200, 200, 200, 0.281);
@@ -16,12 +19,38 @@ button{
     zoom: 4;
 }
 input{
+    text-shadow: none;
     width: 90%;
     background-color: rgba(255, 255, 255, 0.2);
     border: 2px solid rgba(200, 200, 200, 0.281);
 }
 form {
     zoom: 4;
+}
+textarea{
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(200, 200, 200, 0.281);
+}
+#roles{
+    background-color: rgba(60, 60, 60, 0.6);
+    width: 400px;
+    height: 120px;
+    margin: auto;
+    border: 2px solid rgba(60, 60, 60, 0.6);
+    padding: 5px;
+}
+.role{
+    zoom: 0.6;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(200, 200, 200, 0.281);
+    width: 119px;
+    float: left;
+    margin: 5px;
+}
+.roleButton{
+    zoom: normal;
+    background-color: transparent;
+    border: none;
 }
 #Überschrift{
     font-size: 200%;

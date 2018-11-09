@@ -73,6 +73,7 @@ app.post('/createServer', (req, res) => {
                     pwArray.push(req.body.pw);
                     i++;
                     console.log('pw valid');
+                    res.write(pwArray + ':' + i);
                     res.end('server created');
                 }
             }

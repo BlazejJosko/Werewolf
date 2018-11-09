@@ -8,7 +8,6 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
 </head>
 <body>
     <div id="MainMenu">
@@ -21,15 +20,37 @@
         </div>
     </div>
     <div id="Server" style="display:none">
-        <form id="serverForm" action="createServer">
+        <form id="serverForm" method="POST">
             Password: <input type="password" name="pw"> <br>
-            Extended?: <input type="checkbox" name="ext"> <br>
-            <br>
-            <input type="submit">
+
+            Roles: <br>
+            <div id="roles" style="overflow:auto">
+                <div class="role">
+                    1. Werwolf <button type="button" class="roleButton" onclick="removeDiv(this)">X</button>
+                </div>
+                <div class="role">
+                    2. Hexe <button type="button" class="roleButton" onclick="removeDiv(this)">X</button>
+                </div>
+                <div class="role">
+                    3. Amor <button type="button" class="roleButton" onclick="removeDiv(this)">X</button>
+                </div>
+                <div class="role">
+                    4. Hure <button type="button" class="roleButton" onclick="removeDiv(this)">X</button>
+                </div>
+                <div class="role">
+                    5. Blinzemädchen <button type="button" class="roleButton" onclick="removeDiv(this)">X</button>
+                </div>
+            </div>
         </form>
+        <form id="roleForm">
+            <button type="button" style="zoom: 0;" onclick="addAdder()">Add more roles</button>
+            <input type="text" placeholder="Add some custom roles!" id="roleAdder" value="" style="display: none; margin: auto; margin-top: 2px;">
+        </form>
+        <br>
+        <button type="button" value="Start Server" onclick="sendForm()">Create Server</button>
     </div>
     <div id="Client" style="display:none">
-        <form id="loginForm">
+        <form id="loginForm" method="POST">
             Server-ID: <input type="text" name="serverID"> <br>
             Password: <input type="password" name="password"> <br>
 
@@ -38,5 +59,6 @@
             <input type="submit">   <br>
         </form>
     </div>
+    <script src="main.js"></script>
 </body>
 </html>
