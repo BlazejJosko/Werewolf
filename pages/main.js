@@ -1,14 +1,3 @@
-function joinroom() {
-    document.getElementById('MainMenu').style.display = 'none';
-    document.getElementById('Server').style.display = 'none';
-    document.getElementById('Client').style.display = 'block';
-}
-function createServer(){
-    document.getElementById('MainMenu').style.display = 'none';
-    document.getElementById('Server').style.display = 'block';
-    document.getElementById('Client').style.display = 'none';
-}
-
 var clicker = false;
 function addAdder(){
     clicker = !clicker;
@@ -31,7 +20,7 @@ function removeDiv(elem){
  * It looks for role updates in the create Server section
  */
 
-function divUpdate(length){
+function divUpdate(){
     var htmlRoleObj = [];
     // Loop through the amount of children id=roles has
     console.log('Updating Roles')
@@ -41,20 +30,8 @@ function divUpdate(length){
         // get the active div
         let child = $('#roles').children()[i].innerText;
         console.log('Changing:', child);
-        
-        // read the number of the div so we can assign the search value
-        let number = parseInt(child.substr(0,1));
 
-        // replace the first whitespace and then assign the search borders
-        child = child.replace(' ', ''); // remove the whitespace because then there will be no change that a role starting with X will be detected as the end
-        let start = child.search(`${number}.`) + 2;
-        let end = child.search(' X') - 2;
-        console.log(child);
-
-        // create a substring only containing the role
-        child = child.substr(start, end);
-        console.log("Trimmed at", start, end);
-        console.log(child);
+        child = filterRole(child).role;
 
         // push it into an array
         htmlRoleObj[i] = `<div class="role">${i+1}. ${child} <button type="button" class="roleButton" onclick="removeDiv(this)">X</button></div>`;
@@ -66,55 +43,75 @@ function divUpdate(length){
         console.log('Role', z);
         $('#roles').html($('#roles').html() + htmlRoleObj[z]);
     }
-
-    //filter the role from the number
-
-    //add the number infront of the div
 }
+/**
+ * 
+ * @param {string} role //takes the role and extracts the number and the Name
+ */
+function filterRole(role){
+    // read the number of the div so we can assign the search value
+    let number = parseInt(role.substr(0,1));
+
+    // replace the first whitespace and then assign the search borders
+    role = role.replace(' ', ''); // remove the whitespace because then there will be no change that a role starting with X will be detected as the end
+    let start = role.search(`${number}.`) + 2;
+    let end = role.search(' X') - 2;
+
+    // create a substring only containing the role
+    role = role.substr(start, end);
+    console.log("Trimmed at", start, end);
+    console.log(role);
+
+    return {number: number, role: role};
+}
+
 
 var serverForm = $('#serverForm');
 function sendForm(){
     console.log('Form used');
+    let data = '';
     
+    // get Role Number and Name put it in Array
+    for(let i = 0; i < $('#roles').children().length; i++){
+        let role = $('#roles').children()[i].innerText;
+
+        let trimmer = filterRole(role)
+
+        data += `&nr=${trimmer.number}&role=${trimmer.role}`;
+    }
+
+    console.log(serverForm.serialize()+data)
+
     $.ajax({
         type: "POST",
         url: serverForm.attr('action'),
-        data: serverForm.serialize(),
+        data: serverForm.serialize()+data,
         success: (data) => {
             console.log(data);
             //success function
+            // Create Lobby
         },
         error: (err) => {
             console.log(err);
             //error function
+            // 
         }
     })
+
+    document.getElementById('ServerLobby').style.display = 'block';
+    document.getElementById('ServerCreation').style.display = 'none';
+
 }
 
 
 $(document).ready(() => {
 
-    var roleForm = $('#roleForm');
-    var loginForm = $('#loginForm');
-
-    loginForm.submit((e) => {
+    serverForm.submit((e) => {
         e.preventDefault();
-        console.log('Form used');
-
-        console.log(loginForm.serialize());
-
-        $.ajax({
-            type: "POST",
-            //url: form.attr('action') or '',
-            data: loginForm.serialize(),
-            success: (data) => {
-                console.log(data);
-            },
-            error: (err) => {
-                console.log(err);
-            }
-        });
+        sendForm();
     })
+
+    var roleForm = $('#roleForm');
 
     roleForm.submit((e) => {
         e.preventDefault();

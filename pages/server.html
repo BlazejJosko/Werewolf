@@ -10,16 +10,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 </head>
 <body>
-    <div id="MainMenu">
-        <div id="Überschrift">
-            <h1>Werewolf</h1>
-        </div>
-        <div id="Knöpfe">
-            <button onclick="joinroom()">Join Room</button>
-            <button onclick="createServer()">Create Server</button>
-        </div>
-    </div>
-    <div id="Server" style="display:none">
+    <div id="ServerCreation">
         <form id="serverForm" method="POST">
             Password: <input type="password" name="pw"> <br>
 
@@ -38,7 +29,7 @@
                     4. Hure <button type="button" class="roleButton" onclick="removeDiv(this)">X</button>
                 </div>
                 <div class="role">
-                    5. Blinzemädchen <button type="button" class="roleButton" onclick="removeDiv(this)">X</button>
+                    5. Blinzelmädchen <button type="button" class="roleButton" onclick="removeDiv(this)">X</button>
                 </div>
             </div>
         </form>
@@ -49,16 +40,19 @@
         <br>
         <button type="button" value="Start Server" onclick="sendForm()">Create Server</button>
     </div>
-    <div id="Client" style="display:none">
-        <form id="loginForm" method="POST">
-            Server-ID: <input type="text" name="serverID"> <br>
-            Password: <input type="password" name="password"> <br>
+    <div id="ServerLobby" style="overflow: auto; display: none;">
+        <div id="PlayerList" style="margin: auto; float: left;zoom:4;">
+            Players:
+            <div id="Players" style="width: 100px; height: 150px; background-color: aqua;">
 
-            Nickname: <input type="text" name="nickname" value="nickname">   <br>
-            <br>
-            <input type="submit">   <br>
-        </form>
+            </div>
+        </div>
+        <div id="Chat" style="float: left; background-color:blueviolet; width:50%; height:100%;"></div>
+        <div id="activeRoles"></div>
+        <button>START GAME</button>
     </div>
+
+
     <script src="main.js"></script>
 </body>
 </html>
